@@ -4,7 +4,7 @@ function benchmark
     close all;
     clc;
     
-    numberOfTeams = 4;
+    numberOfTeams = 10;
 
     startTime = tic; % start of timer
     [xmin,fmin,status,extra,usedData,allMatches] = sport_scheduling(numberOfTeams);
@@ -28,16 +28,17 @@ function benchmark
     fprintf('Used memory: %s \n', Bytes2str(bytes))
     
     % print result
-    slots = size(allMatches,1);
-    slotNumber = 0;  
+    slots = numberOfTeams*(numberOfTeams-1)*(numberOfTeams/2);
+    slotNumber = 0;
     for i = 1:size(xmin)
         if(mod(i,slots) == 1)
             slotNumber = slotNumber + 1;
-            fprintf('slot: %d\n\t', slotNumber)
+%             fprintf('slot: %d\n\t', slotNumber)
         end
         if xmin(i) == 1
-            matchIndex = mod(i-1,slots)+1;
-            fprintf('%d x %d\n', allMatches(matchIndex,1), allMatches(matchIndex,2));
+            matchIndex = ceil((mod(i-1,slots)+1)/numberOfTeams);
+            referee = mod((mod(i-1,slots)+1)-1,numberOfTeams)+1;
+            fprintf('%d x %d - (referee: %d)\n', allMatches(matchIndex,1), allMatches(matchIndex,2), referee);
         end
     end
 end
