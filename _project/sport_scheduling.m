@@ -45,7 +45,7 @@ for i = 1:matches
     start = start+n;
 end
 
-%% team i plays once in column m
+%% team i plays once in column m - "in row" games constrain
 init_row = size(A,1);
 for i = 1:numberOfTeams
     [teamMatches,y] = find(allMatches==i); % matches of given team

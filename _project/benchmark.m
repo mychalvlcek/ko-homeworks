@@ -4,7 +4,7 @@ function benchmark
     close all;
     clc;
     
-    numberOfTeams = 10;
+    numberOfTeams = 8;
 
     startTime = tic; % start of timer
     [xmin,fmin,status,extra,usedData,allMatches] = sport_scheduling(numberOfTeams);
@@ -12,8 +12,8 @@ function benchmark
 
     % show the solution
     if(status == 1)
-        disp('Solution: '); disp(xmin')
-        disp('Matches: '); disp(sum(xmin))
+%         disp('Solution: '); disp(xmin')
+%         disp('Matches: '); disp(sum(xmin))
         disp('Objective function: '); disp(fmin)
     else
         disp('No feasible solution found!');
